@@ -13,7 +13,6 @@ label {
   display: block; 
   margin-top: 10px; 
   font-size: 16px;
-  font-weight: bold;
 }
 
 input, select { 
@@ -21,27 +20,6 @@ input, select {
   padding: 8px;
   width: 80%;
   max-width: 300px;
-}
-
-/* Button Styling */
-button { 
-  margin-top: 15px; 
-  padding: 10px 15px; 
-  background-color: #0073aa; 
-  color: white; 
-  border: none; 
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #005a87;
-}
-
-.result { 
-  margin-top: 20px; 
-  font-size: 1.2em; 
-  font-weight: bold; 
 }
 
 /* ✅ Fix: Checkbox Alignment Below Input Fields */
@@ -60,6 +38,7 @@ button:hover {
 .checkbox-container label {
   font-size: 14px;
   font-style: italic;
+  font-weight: normal; /* ✅ Removes bold */
   margin-left: 5px;
 }
 
@@ -67,4 +46,30 @@ button:hover {
 .checkbox-container input {
   width: 16px;
   height: 16px;
+}
+
+/* ✅ Fix: Drop Calculate Button to a New Line on Desktop */
+button { 
+  margin-top: 15px; 
+  padding: 10px 15px; 
+  background-color: #0073aa; 
+  color: white; 
+  border: none; 
+  cursor: pointer;
+  font-size: 16px;
+  display: block; /* Forces button onto a new line */
+  width: 80%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button:hover {
+  background-color: #005a87;
+}
+
+.result { 
+  margin-top: 20px; 
+  font-size: 1.2em; 
+  font-weight: bold; 
 }
