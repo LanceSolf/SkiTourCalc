@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ski Tour Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h2>Ski Tour Time Calculator</h2>
+        
+        <label for="distance">Distance (km):</label>
+        <input type="number" id="distance" placeholder="Enter distance" required>
+
+        <label for="elevation">Elevation Gain (m):</label>
+        <input type="number" id="elevation" placeholder="Enter elevation gain" required>
+
+        <button onclick="calculateTime()">Calculate Time</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
