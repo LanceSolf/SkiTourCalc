@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hiking Time Estimator</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    label { display: block; margin-top: 10px; }
+    input, select { margin-top: 5px; }
+    button { margin-top: 15px; padding: 10px 15px; }
+    .result { margin-top: 20px; font-size: 1.2em; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Hiking Time Estimator</h1>
+  
+  <label for="startElevation">Start Elevation (m):</label>
+  <input type="number" id="startElevation" placeholder="e.g., 2600" required>
+  
+  <label for="highPoint">High Point Elevation (m):</label>
+  <input type="number" id="highPoint" placeholder="e.g., 3230" required>
+  
+  <label for="finishElevation">Finish Elevation (m):</label>
+  <input type="number" id="finishElevation" placeholder="e.g., 2260" required>
+  <input type="checkbox" id="sameAsStart" onclick="syncElevations()"> <label for="sameAsStart" style="display:inline;">Same as Start</label>
+  
+  <label for="distance">Horizontal Distance (km):</label>
+  <input type="number" id="distance" step="0.1" placeholder="e.g., 8">
+  <input type="checkbox" id="noHorizontalSpeed" onclick="toggleHorizontalSpeed()"> <label for="noHorizontalSpeed" style="display:inline;">N/A</label>
+  
+  <label for="ascentRate">Ascent Rate (m/h):</label>
+  <select id="ascentRate">
+      <option value="100">100</option>
+      <option value="200">200</option>
+      <option value="300" selected>300</option>
+      <option value="400">400</option>
+      <option value="500">500</option>
+  </select>
+  
+  <label for="descentRate">Descent Rate (m/h):</label>
+  <select id="descentRate">
+      <option value="600">600</option>
+      <option value="700">700</option>
+      <option value="800">800</option>
+      <option value="900">900</option>
+      <option value="1000" selected>1000</option>
+      <option value="1100">1100</option>
+      <option value="1200">1200</option>
+      <option value="1300">1300</option>
+      <option value="1400">1400</option>
+  </select>
+  
+  <label for="horizontalSpeed">Horizontal Speed (km/h):</label>
+  <select id="horizontalSpeed">
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6" selected>6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+  </select>
+  
+  <button onclick="calculateTime()">Calculate Estimated Time</button>
+  
+  <div class="result" id="result"></div>
+  
+  <script>
+    function syncElevations() {
+      const startEl = document.getElementById('startElevation').value;
+      if(document.getElementById('sameAsStart').checked){
+        document.getElementById('finishElevation').value = startEl;
+      }
+    }
+
+    function toggleHorizontalSpeed() {
+      const horizontalSpeedSelect = document.getElementById('horizontalSpeed');
+      horizontalSpeedSelect.disabled = document.getElementById('noHorizontalSpeed').checked;
+    }
+
+    function calculateTime() {
+      const startElevation = parseFloat(document.getElementById('startElevation').value);
+      const highPoint = parseFloat(document.getElementById('highPoint').value);
+      const finishElevation = parseFloat(document.getElementById('finishElevation').value);
+      const distance = parseFloat(document.getElementById('distance').value);
+      const ascentRate = parseFloat(document.getElementById('ascentRate').value);
+      const descentRate = parseFloat(document.getElementById('descentRate').value);
+      const horizontalSpeed = parseFloat(document.getElementById('horizontalSpeed').value);
+      const noHorizontalSpeed = document.getElementById('noHorizontalSpeed').checked;
+      
+      if (isNaN(startElevation) || isNaN(highPoint) || isNaN(finishElevation)) {
+        alert("Please enter valid numerical values for elevation.");
+        return;
+      }
+      
+      // Calculate the vertical differences
+      const ascentElevation = highPoint - startElevation;
+      const descentElevation = highPoint - finishElevation;
+      
+      // Calculate times based on speeds
+      const ascentTime = ascentElevation / ascentRate;  // hours
+      const descentTime = descentElevation / descentRate; // hours
+      const horizontalTime = noHorizontalSpeed ? 0 : distance / horizontalSpeed;  // hours
+      
+      const totalTime = ascentTime + descentTime + horizontalTime;
+      
+      // Format time into hours and minutes
+      function formatTime(hours) {
+        const totalMinutes = Math.round(hours * 60);
+        const hrs = Math.floor(totalMinutes / 60);
+        const mins = totalMinutes % 60;
+        return hrs + "h " + mins + "m";
+      }
+      
+      const resultText = 
+        "Ascent Time: " + formatTime(ascentTime) + "<br>" +
+        "Descent Time: " + formatTime(descentTime) + "<br>" +
+        (noHorizontalSpeed ? "" : "Horizontal Time: " + formatTime(horizontalTime) + "<br>") +
+        "<strong>Total Estimated Time: " + formatTime(totalTime) + "</strong>";
+      
+      document.getElementById('result').innerHTML = resultText;
+    }
+  </script>
+</body>
+</html>
