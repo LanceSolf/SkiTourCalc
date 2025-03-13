@@ -21,6 +21,7 @@ input, select {
   max-width: 300px;
 }
 
+/* Button Styling */
 button { 
   margin-top: 15px; 
   padding: 10px 15px; 
@@ -41,11 +42,10 @@ button:hover {
   font-weight: bold; 
 }
 
-/* New styling for checkboxes to appear below inputs */
+/* ✅ Fix: Always Force Checkboxes Below Inputs */
 .checkbox-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;  /* Force checkboxes onto a new line */
+  text-align: center; /* Keep alignment consistent */
   margin-top: 5px;
 }
 
