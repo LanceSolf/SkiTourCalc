@@ -1,27 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ski Tour Calculator</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hiking Time Estimator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="calculator-container">
-        <h2>Ski Tour Time Calculator</h2>
-        
-        <label for="distance">Distance (km):</label>
-        <input type="number" id="distance" placeholder="Enter distance" required>
-
-        <label for="elevation">Elevation Gain (m):</label>
-        <input type="number" id="elevation" placeholder="Enter elevation gain" required>
-
-        <button onclick="calculateTime()">Calculate Time</button>
-
-        <p id="result"></p>
-    </div>
-
-    <script src="script.js"></script>
+  <h1>Hiking Time Estimator</h1>
+  
+  <label for="startElevation">Start Elevation (m):</label>
+  <input type="number" id="startElevation" placeholder="e.g., 2600" required>
+  
+  <label for="highPoint">High Point Elevation (m):</label>
+  <input type="number" id="highPoint" placeholder="e.g., 3230" required>
+  
+  <label for="finishElevation">Finish Elevation (m):</label>
+  <input type="number" id="finishElevation" placeholder="e.g., 2260" required>
+  <input type="checkbox" id="sameAsStart" onclick="syncElevations()"> <label for="sameAsStart" style="display:inline;">Same as Start</label>
+  
+  <label for="distance">Horizontal Distance (km):</label>
+  <input type="number" id="distance" step="0.1" placeholder="e.g., 8">
+  <input type="checkbox" id="noHorizontalSpeed" onclick="toggleHorizontalSpeed()"> <label for="noHorizontalSpeed" style="display:inline;">N/A</label>
+  
+  <label for="ascentRate">Ascent Rate (m/h):</label>
+  <select id="ascentRate">
+      <option value="100">100</option>
+      <option value="200">200</option>
+      <option value="300" selected>300</option>
+      <option value="400">400</option>
+      <option value="500">500</option>
+  </select>
+  
+  <label for="descentRate">Descent Rate (m/h):</label>
+  <select id="descentRate">
+      <option value="600">600</option>
+      <option value="700">700</option>
+      <option value="800">800</option>
+      <option value="900">900</option>
+      <option value="1000" selected>1000</option>
+      <option value="1100">1100</option>
+      <option value="1200">1200</option>
+      <option value="1300">1300</option>
+      <option value="1400">1400</option>
+  </select>
+  
+  <label for="horizontalSpeed">Horizontal Speed (km/h):</label>
+  <select id="horizontalSpeed">
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6" selected>6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+  </select>
+  
+  <button onclick="calculateTime()">Calculate Estimated Time</button>
+  
+  <div class="result" id="result"></div>
+  
+  <script src="script.js"></script>
 </body>
 </html>
