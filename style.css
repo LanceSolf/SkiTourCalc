@@ -12,6 +12,8 @@ h1 {
 label { 
   display: block; 
   margin-top: 10px; 
+  font-size: 16px;
+  font-weight: bold;
 }
 
 input, select { 
@@ -42,14 +44,27 @@ button:hover {
   font-weight: bold; 
 }
 
-/* ✅ Fix: Always Force Checkboxes Below Inputs */
+/* ✅ Fix: Checkbox Alignment Below Input Fields */
 .checkbox-container {
-  display: block;  /* Force checkboxes onto a new line */
-  text-align: center; /* Keep alignment consistent */
+  display: flex; /* Align checkbox and label horizontally */
+  align-items: baseline; /* Align checkbox with bottom of label text */
+  justify-content: left; /* Align with left edge of input box */
   margin-top: 5px;
+  width: 80%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Make the checkbox label distinct */
+.checkbox-container label {
+  font-size: 14px;
+  font-style: italic;
+  margin-left: 5px;
+}
+
+/* Keep checkboxes a fixed size */
 .checkbox-container input {
-  width: auto;
-  margin-right: 5px;
+  width: 16px;
+  height: 16px;
 }
