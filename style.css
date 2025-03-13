@@ -40,3 +40,16 @@ button:hover {
   font-size: 1.2em; 
   font-weight: bold; 
 }
+
+/* New styling for checkboxes to appear below inputs */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.checkbox-container input {
+  width: auto;
+  margin-right: 5px;
+}
