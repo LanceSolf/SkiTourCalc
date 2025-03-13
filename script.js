@@ -1,15 +1,42 @@
-function calculateTime() {
-    let distance = document.getElementById("distance").value;
-    let elevation = document.getElementById("elevation").value;
-    let result = document.getElementById("result");
+body { 
+  font-family: Arial, sans-serif; 
+  padding: 20px; 
+  text-align: center; 
+  background-color: #f4f4f4; 
+}
 
-    if (distance === "" || elevation === "") {
-        result.innerHTML = "Please enter both values!";
-        return;
-    }
+h1 {
+  color: #333;
+}
 
-    // Basic hiking time formula (example: 4 km/hr + 1 hr per 300m ascent)
-    let timeHours = (distance / 4) + (elevation / 300);
+label { 
+  display: block; 
+  margin-top: 10px; 
+}
 
-    result.innerHTML = `Estimated time: ${timeHours.toFixed(2)} hours`;
+input, select { 
+  margin-top: 5px; 
+  padding: 8px;
+  width: 80%;
+  max-width: 300px;
+}
+
+button { 
+  margin-top: 15px; 
+  padding: 10px 15px; 
+  background-color: #0073aa; 
+  color: white; 
+  border: none; 
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #005a87;
+}
+
+.result { 
+  margin-top: 20px; 
+  font-size: 1.2em; 
+  font-weight: bold; 
 }
