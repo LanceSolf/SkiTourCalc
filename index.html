@@ -67,6 +67,12 @@
   
   <div class="result" id="result"></div>
   
-  <script src="script.js"></script>
+  <script>
+    function toggleHorizontalSpeed() {
+      var checkbox = document.getElementById('noHorizontalSpeed');
+      var distanceInput = document.getElementById('distance');
+      distanceInput.disabled = checkbox.checked;
+    }
+  </script>
 </body>
 </html>
