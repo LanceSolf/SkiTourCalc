@@ -14,12 +14,16 @@ function toggleHorizontalSpeed() {
   }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  toggleHorizontalSpeed();
+});
+
 function calculateTime() {
   const startElevation = parseFloat(document.getElementById('startElevation').value);
   const highPoint = parseFloat(document.getElementById('highPoint').value);
   const finishElevation = parseFloat(document.getElementById('finishElevation').value);
   const distanceInput = document.getElementById('distance');
-  const distance = distanceInput.disabled ? 0 : parseFloat(distanceInput.value);
+  const distance = distanceInput.disabled || distanceInput.value === "" ? 0 : parseFloat(distanceInput.value);
   const ascentRate = parseFloat(document.getElementById('ascentRate').value);
   const descentRate = parseFloat(document.getElementById('descentRate').value);
   const horizontalSpeed = parseFloat(document.getElementById('horizontalSpeed').value);
@@ -35,7 +39,7 @@ function calculateTime() {
   
   const ascentTime = ascentElevation / ascentRate;
   const descentTime = descentElevation / descentRate;
-  const horizontalTime = noHorizontalSpeed ? 0 : (isNaN(distance) ? 0 : distance / horizontalSpeed);
+  const horizontalTime = noHorizontalSpeed || isNaN(distance) ? 0 : distance / horizontalSpeed;
   
   const totalTime = ascentTime + descentTime + horizontalTime;
   
